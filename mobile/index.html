@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b0e14" />
+    <title>影析 FrameLens</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="mark"></span>
+        <div>
+          <b>影析</b>
+          <small>FrameLens 移动版</small>
+        </div>
+      </div>
+      <span class="badge" id="engine-badge">解析引擎就绪</span>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab is-active" data-tab="parse">全平台解析</button>
+      <button class="tab" data-tab="chat">本地模型对话</button>
+    </nav>
+
+    <main id="page-parse">
+      <section class="hero">
+        <h1>粘贴链接，一键解析</h1>
+        <p>支持抖音、快手、B站、小红书、微博、YouTube、TikTok 等平台，以及任意公开网页里的视频。</p>
+      </section>
+
+      <section class="card">
+        <textarea id="input" rows="4" placeholder="粘贴视频分享文本或链接，一行一个"></textarea>
+        <div class="row">
+          <button id="paste" class="btn">粘贴</button>
+          <button id="clear" class="btn">清空</button>
+        </div>
+        <button id="go" class="btn btn--primary btn--block">解析全平台链接</button>
+        <div class="status" id="status"></div>
+      </section>
+
+      <div id="results"></div>
+
+      <footer class="foot">
+        <p>请仅下载你有权保存的内容，遵守各平台服务条款。</p>
+      </footer>
+    </main>
+
+    <main id="page-chat" hidden>
+      <section class="card" id="model-card">
+        <h2 class="card-title">本地模型</h2>
+        <p class="card-desc" id="model-status">正在检查…</p>
+        <div id="model-actions"></div>
+        <div id="model-progress"></div>
+      </section>
+
+      <section class="card">
+        <div class="chat-head">
+          <b>对话</b>
+          <div class="chat-head-actions">
+            <button class="btn btn--mini" id="chat-attach">图片</button>
+            <button class="btn btn--mini" id="chat-clear">清空</button>
+          </div>
+        </div>
+        <div class="chat-scroll" id="chat-scroll">
+          <div class="empty" id="chat-empty">模型加载完就能聊，也可以先发一张图片让它看看。</div>
+        </div>
+        <div class="composer">
+          <textarea id="chat-input" rows="1" placeholder="说点什么…"></textarea>
+          <button class="btn btn--primary btn--send" id="chat-send">发送</button>
+        </div>
+        <input type="file" id="file-picker" accept="image/*" hidden />
+        <div class="chat-hint" id="chat-hint"></div>
+      </section>
+
+      <footer class="foot">
+        <p>模型与推理都在手机本地运行，断网也能用，内容不会上传。</p>
+      </footer>
+    </main>
+
+    <div class="toast" id="toast" hidden></div>
+    <script src="app.js"></script>
+  </body>
+</html>

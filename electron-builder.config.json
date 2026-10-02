@@ -1,0 +1,63 @@
+{
+  "appId": "com.framelens.desktop",
+  "productName": "影析 FrameLens",
+  "copyright": "Copyright © 2026 FrameLens",
+  "directories": {
+    "output": "release",
+    "buildResources": "build"
+  },
+  "files": [
+    "electron/**/*",
+    "core/**/*",
+    "src/**/*",
+    "package.json",
+    "!**/*.map",
+    "!**/.framelens-runtime.json"
+  ],
+  "extraResources": [
+    {
+      "from": "resources/bundled",
+      "to": "bundled",
+      "filter": ["**/*"]
+    }
+  ],
+  "compression": "normal",
+  "asar": true,
+  "afterPack": "scripts/after-pack.mjs",
+  "win": {
+    "icon": "build/icon.ico",
+    "target": [
+      { "target": "nsis", "arch": ["x64"] }
+    ],
+    "artifactName": "影析FrameLens-${version}-${arch}-安装包.${ext}"
+  },
+  "nsis": {
+    "oneClick": true,
+    "perMachine": false,
+    "allowElevation": true,
+    "allowToChangeInstallationDirectory": false,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "影析 FrameLens",
+    "runAfterFinish": true,
+    "deleteAppDataOnUninstall": false,
+    "installerIcon": "build/icon.ico",
+    "uninstallerIcon": "build/icon.ico",
+    "installerHeaderIcon": "build/icon.ico",
+    "warningsAsErrors": false,
+    "unicode": true
+  },
+  "portable": {
+    "artifactName": "影析FrameLens-${version}-便携版.${ext}"
+  },
+  "mac": {
+    "icon": "build/icon.png",
+    "category": "public.app-category.video",
+    "target": ["dmg"]
+  },
+  "linux": {
+    "icon": "build/icon.png",
+    "category": "AudioVideo",
+    "target": ["AppImage", "deb"]
+  }
+}

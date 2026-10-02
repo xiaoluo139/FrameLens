@@ -1,0 +1,25 @@
+{
+  "name": "framelens-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "description": "影析 FrameLens 移动端：全平台视频/图片解析（复用桌面端同一套解析引擎）",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "sync": "npm run build && cap sync android",
+    "android": "npm run sync && cd android && gradlew.bat assembleDebug",
+    "android:release": "npm run sync && cd android && gradlew.bat assembleRelease",
+    "model:embed": "node scripts/embed-model.mjs",
+    "android:release:full": "npm run model:embed && npm run android:release",
+    "sync:safe": "node --require ./tools/userinfo-shim.cjs node_modules/@capacitor/cli/bin/capacitor sync android"
+  },
+  "dependencies": {
+    "@capacitor/android": "^6.2.0",
+    "@capacitor/core": "^6.2.0",
+    "@capacitor/filesystem": "^6.0.4"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.2.0",
+    "esbuild": "^0.24.0"
+  }
+}

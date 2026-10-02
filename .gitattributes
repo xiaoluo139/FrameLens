@@ -1,0 +1,14 @@
+# 统一换行符，避免 Windows 上反复出现 CRLF 提示
+* text=auto
+
+# 二进制资源不做换行转换
+*.png binary
+*.jpg binary
+*.ico binary
+*.icns binary
+*.gguf binary
+*.apk binary
+*.exe binary
+*.jar binary
+*.keystore binary
+*.zip binary

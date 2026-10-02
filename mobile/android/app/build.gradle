@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace "com.framelens.mobile"
+    compileSdk rootProject.ext.compileSdkVersion
+
+    /**
+     * 发布签名。
+     * 默认使用项目内自带的开发签名（仅用于内部安装测试），
+     * 正式发版请通过环境变量替换为自己的证书：
+     *   FRAMELENS_KEYSTORE / FRAMELENS_STORE_PASSWORD / FRAMELENS_KEY_ALIAS / FRAMELENS_KEY_PASSWORD
+     */
+    signingConfigs {
+        release {
+            storeFile file(System.getenv('FRAMELENS_KEYSTORE') ?: '../../framelens-release.keystore')
+            storePassword System.getenv('FRAMELENS_STORE_PASSWORD') ?: 'framelens2026'
+            keyAlias System.getenv('FRAMELENS_KEY_ALIAS') ?: 'framelens'
+            keyPassword System.getenv('FRAMELENS_KEY_PASSWORD') ?: 'framelens2026'
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.framelens.mobile"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        aaptOptions {
+             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
+             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
+            ignoreAssetsPattern '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    // 必须让原生库解压到本机库目录：随包分发的推理可执行文件要从文件系统里运行，
+    // 打包进 APK 内部是没法执行的
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging true
+        }
+    }
+
+    // 随包的推理可执行文件不能被压缩存放，否则解压后无法执行
+    androidResources {
+        // so：可执行文件必须能直接运行；gguf：全内置版的模型，压缩后安装与读取都极慢
+        noCompress 'so', 'gguf'
+    }
+}
+
+repositories {
+    flatDir{
+        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+    implementation project(':capacitor-android')
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+    implementation project(':capacitor-cordova-android-plugins')
+}
+
+apply from: 'capacitor.build.gradle'
+
+try {
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}

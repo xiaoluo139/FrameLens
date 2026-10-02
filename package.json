@@ -1,0 +1,44 @@
+{
+  "name": "framelens",
+  "productName": "影析 FrameLens",
+  "version": "1.0.0",
+  "description": "本地离线的视频链接解析 + 图像/视频理解工作台，内置小模型，装机即用。",
+  "author": {
+    "name": "FrameLens Studio",
+    "email": "hello@framelens.local"
+  },
+  "homepage": "https://framelens.local",
+  "license": "MIT",
+  "type": "module",
+  "main": "electron/main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "icons": "node scripts/make-icon.mjs",
+    "model:pull": "node scripts/fetch-model.mjs",
+    "test": "node --test \"tests/**/*.test.mjs\"",
+    "check": "node scripts/check-syntax.mjs",
+    "smoke": "electron . --smoke --disable-gpu",
+    "shot": "electron . --shot --disable-gpu --force-device-scale-factor=2",
+    "verify": "node scripts/verify-runtime.mjs",
+    "e2e": "electron . --e2e --disable-gpu",
+    "e2e:full": "electron . --e2e --with-model --disable-gpu",
+    "e2e:online": "node scripts/e2e-online.mjs",
+    "e2e:import": "electron . --e2e-import --disable-gpu",
+    "mobile:verify": "cd mobile && npm run build && electron tools/verify-ui.mjs --disable-gpu",
+    "build:win": "node scripts/build-win.mjs",
+    "build:win:lite": "node scripts/build-win.mjs --lite",
+    "build:win:full": "node scripts/build-win.mjs --bundled",
+    "clean": "node scripts/clean.mjs",
+    "build:mac": "npm run icons && electron-builder --config electron-builder.config.json --mac",
+    "build:linux": "npm run icons && electron-builder --config electron-builder.config.json --linux",
+    "mobile:sync": "node scripts/mobile-sync.mjs"
+  },
+  "devDependencies": {
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
