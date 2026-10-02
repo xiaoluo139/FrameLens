@@ -16,11 +16,23 @@ Windows 与 Android 双端同源，安装包内已带完整模型——**下载�
 
 | 平台 | 安装包 | 大小 | 说明 |
 |---|---|---|---|
-| Windows 64 位 | [影析FrameLens-桌面端-全内置.exe](https://github.com/xiaoluo139/FrameLens/releases/latest) | 1.58 GB | 一键安装（NSIS，不用选目录），装完即用 |
-| Android（arm64） | [影析FrameLens-手机端-全内置.apk](https://github.com/xiaoluo139/FrameLens/releases/latest) | 1.60 GB | 传到手机点安装即可 |
+| Windows 64 位 | [FrameLens-1.0.0-Windows-x64-Full-Setup.exe](https://github.com/xiaoluo139/FrameLens/releases/download/v1.0.0/FrameLens-1.0.0-Windows-x64-Full-Setup.exe) | 1.58 GB | 一键安装（NSIS，不用选目录），装完即用 |
+| Android（arm64-v8a） | [FrameLens-1.0.0-Android-arm64-Full.apk](https://github.com/xiaoluo139/FrameLens/releases/download/v1.0.0/FrameLens-1.0.0-Android-arm64-Full.apk) | 1.60 GB | 传到手机点安装即可 |
+
+全部版本见 [Releases](https://github.com/xiaoluo139/FrameLens/releases)（当前只有一个最新版）。
 
 > 装完打开就能用：右上角状态显示「本地模型已就绪」说明模型已经加载好，可以直接解析或提问。
 > 手机安装时 vivo/小米等会提示「外部来源应用」，勾选「已知晓风险」再点「继续安装」即可。
+
+### 校验下载文件（可选）
+
+```
+FrameLens-1.0.0-Windows-x64-Full-Setup.exe
+sha256  4c41757160fea6465df6e2c9978d494178c64c379be9ed47f374975869f20a5f
+
+FrameLens-1.0.0-Android-arm64-Full.apk
+sha256  6cdc865da88aa59f3853c60df5c0f4fc290184ff09f247f5a5528a7f24637c84
+```
 
 ## 界面
 

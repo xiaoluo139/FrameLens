@@ -5,10 +5,17 @@
 
 ### 下载
 
-| 平台 | 文件 | 大小 |
-|---|---|---|
-| Windows 64 位 | `影析FrameLens-桌面端-全内置.exe` | 1.58 GB |
-| Android（arm64-v8a） | `影析FrameLens-手机端-全内置.apk` | 1.60 GB |
+| 平台 | 文件 | 大小 | sha256 |
+|---|---|---|---|
+| Windows 64 位 | `FrameLens-1.0.0-Windows-x64-Full-Setup.exe` | 1.58 GB | `4c417571...f20a5f` |
+| Android（arm64-v8a） | `FrameLens-1.0.0-Android-arm64-Full.apk` | 1.60 GB | `6cdc865d...637c84` |
+
+完整校验值：
+
+```
+4c41757160fea6465df6e2c9978d494178c64c379be9ed47f374975869f20a5f  FrameLens-1.0.0-Windows-x64-Full-Setup.exe
+6cdc865da88aa59f3853c60df5c0f4fc290184ff09f247f5a5528a7f24637c84  FrameLens-1.0.0-Android-arm64-Full.apk
+```
 
 安装说明：
 
